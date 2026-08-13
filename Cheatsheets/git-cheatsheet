@@ -1,0 +1,171 @@
+Git & Github(version control systems):
+=======================================
+What is version control system?
+
+1. vcs: Any changes to projects/files using v1.0,v2.0,v3.0
+
+we can recall the versions 
+
+cd project #ls 
+v1.0, v2.0, v3.0 
+
+They have 2 types of git 
+1. centralized 
+2. distributed - it has copy of 
+data in all servers 
+
+HOW GIT works?
+website1:
+- index.html
+- style.css
+- image/img01, img02
+git initalize 
+
+Git basics:
+----------
+We can install git using 3 ways 
+1. Install git from website 
+2. By using 3rd party tool
+3. By installing visual studio code in linux vm 
+
+
+Steps for installation:
+------------------------
+1.First install visual studio code
+2. Go to git-scm.com -> click on install for windows. It get downloaded
+3. open downloaded git.exe file 
+
+
+Git basic commands:
+------------------
+Creating my First project creation 
+#pwd
+#mkdir myproject 
+Need to open visual studio code 
+# code myproject
+git initalize
+#git init
+#code .
+to check status of git
+# git status
+first commit 
+git add index.html
+git commit -m "first commit"
+To unstage a file in git 
+#git rm --cached style.css
+To track user 
+git config --global user.email "you@example.com"
+git config --global user.name "your name"
+git config --global user.name
+
+#git status
+
+git history 
+#git log 
+in a single line 
+# git log --oneline 
+
+
+Modify things in git:
+-----------------------
+1. Head 
+# git show head 
+#git show <uid>
+2. Git checkout: checking out going back and verifying what happened  
+# git log --oneline 
+#git checkout <uid>
+#git status
+
+3. Git revert, reset(soft,hard,mixed)
+
+Revert: undo changes 
+#git revert <uid>
+
+Reset: be careful
+# git reset - means default is  mixed 
+# git reset --mixed <uid> --- file moved to unstaged 
+# git checkout .
+file clearly 
+
+Soft:
+-----
+#git revert --soft <uid>
+#git status  --> file is in staged state
+#git reset .  ->> file moved to unstaged 
+# git checkout . -> cleared data in file 
+
+
+hard: unsafe commands
+----
+#git reset --hard <uid>
+it moves to head at that uid location 
+=======What is Github==========
+Git is local repository 
+Github is online repository.
+
+Topics:
+--------
+Git repo 
+push
+commit 
+pull, local 
+
+Master setup
+#git push origin master
+
+shorter name:
+-------------
+git branch --set-upstream-to=origin/master
+
+#git pull
+#git log --oneline
+
+Git Branches:
+=============
+# git branch  ---> to see what branches we have 
+# git branch <name of branch>
+
+change branch:
+# git checkout <branch-name>
+#git log --oneline 
+
+Merge branch to master:
+#git checkout -b feature-2 --> create and switch to branch 
+
+Delete branch 
+#git branch -D feature-2 
+
+#git checkout master -> switched to master
+
+push code to github:
+#git push origin feature-2
+
+pull branch 
+#git pull origin feature-2
+
+
+Merge branch:
+#git branch ttt
+#git checkout ttt
+#git commit -am "changed headercolor"
+#git log --oneline 
+#git merge ttt
+Fast forward merge
+
+3-way merge:
+---------------
+Changes in master & dev branches
+
+#git checkout ttt
+#git commit -am "added variable"
+#git log --oneline
+#git checkout master 
+Add variable in any file 
+#git commit -am "changed header to black in .css"
+#git log --oneline 
+#git merge ttt
+
+Conflict merge:
+--------------- 
+same file edited in 2 branches 
+#git merge --abort
