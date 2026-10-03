@@ -1,1 +1,13 @@
 
+1. Creating a Docker file:  named Dockerfile with the following content:
+```
+FROM ubuntu:latest
+RUN echo "Hello from my first Docker image" > /message.txt
+CMD ["cat", "/message.txt"]
+
+```
+```
+Output: 
+Hello from my first Docker image
+```
+
