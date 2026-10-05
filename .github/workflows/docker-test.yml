@@ -47,4 +47,4 @@ jobs:
           sleep 3 # Give nginx a moment to wakeup
           curl -s http://localhost:8080 |grep title 
           echo "========docker logs ================"
-          docker logs nginx-lab 
+          docker logs web 
