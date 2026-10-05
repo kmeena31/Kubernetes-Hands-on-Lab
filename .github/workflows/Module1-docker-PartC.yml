@@ -30,9 +30,11 @@ jobs:
           docker run -d --name demo-api -p 3000:3000 \
             -e GREETING="Hello from my production image!" \
             module1-demo-api:1.0.0
-            #sleep 2
+          # FIXED: Give the Node.js process 3 seconds to spin up and bind to port 3000
+          sleep 3
           curl -s http://localhost:3000; echo
           curl -s http://localhost:3000/health; echo
+          # Verify container status and permissions
           docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
           sleep 12
           docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
