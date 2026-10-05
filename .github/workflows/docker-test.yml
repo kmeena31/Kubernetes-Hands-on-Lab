@@ -1,0 +1,24 @@
+name: Test Pre-installed Docker
+
+# This triggers the action every time you push code to the main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-docker-commands:
+    # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # Step 2: Verify Docker is working by checking its version
+      - name: Verify Docker Installation
+        run: docker --version
+
+      # Step 3: Run a test container from Docker Hub
+      - name: Run Hello World Container
+        run: docker run hello-world
