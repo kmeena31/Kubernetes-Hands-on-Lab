@@ -18,6 +18,7 @@ jobs:
       # --- STEP 1: Check Docker is ready & create lab folder ---
       - name: "Step 1: Check Docker & Setup"
         run: |
+          echo ""
           docker --version
           docker info --format '{{.ServerVersion}}'
           docker run --rm hello-world
@@ -26,11 +27,24 @@ jobs:
       # --- STEP 2: pull an image and look at its layers ---
       - name: "Step 2: Pull Nginx Image & history"
         run: |
-            cd module1-lab
-            echo "========Docker pull command=============="
-            docker pull nginx:1.28-alpine
-            echo "========Docker images nginx Command======"
-            docker images nginx
-            echo "========Docker image history command======="
-            docker image history nginx:1.28-alpine
+          cd module1-lab
+          echo "========Docker pull command=============="
+          docker pull nginx:1.28-alpine
+          echo "========Docker images nginx Command======"
+          docker images nginx
+          echo "========Docker image history command======="
+          docker image history nginx:1.28-alpine
 
+      # --- STEP 3: Run your first container (foreground, then detached) ---
+      # Note: We skip the interactive foreground blocking step (Ctrl+C) so the pipeline doesn't hang!
+      - name: "Step 3: Run your first container"
+        run: |
+          cd module1-lab
+          echo "========Run detached nginx container======="
+          docker run --rm -d --name web -p 8080:80 nginx:1.28-alpine
+          docker ps --filter "name=web"
+          echo "========Check container logs======="
+          sleep 3 # Give nginx a moment to wakeup
+          curl -s http://localhost:8080 |grep title 
+          echo "========docker logs ================"
+          docker logs nginx-lab 
