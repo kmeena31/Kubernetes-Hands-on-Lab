@@ -41,12 +41,12 @@ jobs:
 
       - name: "step 4: Environment variables — same image, different settings"
         run: |
-            cd module1-lab/first-image
+            cd module1-lab/env-demo
             echo "=== Displaying content of Dockerfile ====="
             cat Dockerfile
             cat app.env
             docker build -t env-demo .
-            
+
             echo '--- 1. default from ENV ---'
             docker run --rm env-demo
 
