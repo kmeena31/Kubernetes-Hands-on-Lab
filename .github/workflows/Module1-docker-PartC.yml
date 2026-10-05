@@ -34,4 +34,7 @@ jobs:
           curl -s http://localhost:3000; echo
           curl -s http://localhost:3000/health; echo
           docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
-    
+          sleep 12
+          docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
+          docker exec demo-api whoami
+          docker images module1-demo-api
