@@ -86,8 +86,8 @@ jobs:
           # docker inspect web | head -30
           echo "===== To check .config.image file =============="
           docker inspect -f '{{.Config.Image}}' web
-        #   echo "===== To check .Network.setting file =============="
-        #   docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+          echo "===== To check .Network.setting file =============="
+          docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
         #  # echo "=======To check docker stats =============="
         #  # docker stats web --no-stream
         #   echo "=======To check top stats =============="
