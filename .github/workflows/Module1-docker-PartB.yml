@@ -65,7 +65,7 @@ jobs:
         run: | 
               echo " Without a volume, data dies with the container"
               cd module1-lab/
-              docker run --name temp-writer alpine:3.22 sh -c 'echo "important data" > /data.txt'
+              docker run --name temp-writer alpine:3.22 sh -c 'echo "important data" > data.txt'
               docker rm temp-writer
-              docker run --rm alpine:3.22 cat /data.txt
+              docker run --rm alpine:3.22 cat data.txt
             
