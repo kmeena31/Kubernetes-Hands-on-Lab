@@ -92,5 +92,5 @@ jobs:
           docker stats web --no-stream
           echo "=======To check top stats =============="
           docker top web
-        #   echo "=======To check docker port =============="
-        #   docker port web
+          echo "=======To check docker port =============="
+          docker port web
