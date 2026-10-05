@@ -21,7 +21,7 @@ jobs:
           echo ""
           docker --version
           docker info --format '{{.ServerVersion}}'
-          docker run --rm nginx:1.28-alpine
+          docker run --rm hello-world
           mkdir module1-lab
 
       # --- STEP 2: pull an image and look at its layers ---
