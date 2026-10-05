@@ -38,3 +38,23 @@ jobs:
           docker images my_first_image
           echo "====== Run the first image =========="
           docker run --rm my_first_image
+
+      - name: "step 4: Environment variables — same image, different settings"
+        run: |
+            cd module1-lab/first-image
+            echo "=== Displaying content of Dockerfile ====="
+            cat Dockerfile
+            cat app.env
+            docker build -t env-demo .
+            
+            echo '--- 1. default from ENV ---'
+            docker run --rm env-demo
+
+            echo '--- 2. override with -e ---'
+            docker run --rm -e GREETING="Hello from -e" env-demo
+
+            echo '--- 3. load a file with --env-file ---'
+            docker run --rm --env-file app.env env-demo
+
+            echo '--- 4. both: -e wins ---'
+            docker run --rm --env-file app.env -e APP_ENV=prod env-demo
