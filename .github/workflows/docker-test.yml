@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  run-docker-commands:
+  run-lab-part-a:
     # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
     runs-on: ubuntu-latest
 
@@ -15,15 +15,19 @@ jobs:
       - name: Checkout project code
         uses: actions/checkout@v4
 
-      # The "|" character tells GitHub Actions to read the following lines as a shell script
-      - name: Pull Docker Images in a Loop
+      # --- STEP 1: Check Docker is ready & create lab folder ---
+      - name: "Step 1: Check Docker & Setup"
         run: |
-          for img in hello-world nginx:1.28-alpine ubuntu:24.04 alpine:3.22 node:24-alpine; do
-            echo "Pulling image: $img"
-            docker pull "$img"
-          done
-      # Verification step: This lists all images currently sitting on the runner
-      - name: Verify Installed Images
+          docker --version
+          docker info --format '{{.ServerVersion}}'
+          docker run --rm hello-world
+          mkdir module1-lab
+
+      # --- STEP 2: pull an image and look at its layers ---
+      - name: "Step 2: Pull Nginx Image & history"
         run: |
-          echo "=== Listing Installed Docker Images ==="
-          docker images
+            cd module1-lab
+            docker pull nginx:1.28-alpine
+            docker images nginx
+            docker image history nginx:1.28-alpine
+
