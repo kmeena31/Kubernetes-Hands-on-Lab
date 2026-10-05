@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  run-lab-part-b:
+  run-lab-part-c:
     # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
     runs-on: ubuntu-latest
 
@@ -22,3 +22,16 @@ jobs:
           cd module1-lab/demo-api
           docker run --rm -v "$(pwd)":/app -w /app node:24-alpine npm install --package-lock-only
           ls package-lock.json
+
+      - name: "Step 3 : Build, run and verify"
+        run: | 
+          cd module1-lab/demo-api
+          docker build -t module1-demo-api:1.0.0 .
+          docker run -d --name demo-api -p 3000:3000 \
+            -e GREETING="Hello from my production image!" \
+            module1-demo-api:1.0.0
+            sleep 2
+          curl -s http://localhost:3000; echo
+          curl -s http://localhost:3000/health; echo
+          docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
+    
