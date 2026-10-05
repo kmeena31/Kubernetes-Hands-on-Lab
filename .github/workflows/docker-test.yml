@@ -65,7 +65,7 @@ jobs:
           docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
           echo "===========docker ps -a ========="
           docker ps -a
-          #docker start web
+          docker start web
        ## --- STEP 5: Read logs and open a shell inside ---
       # Note: We simulate the interactive shell step by passing commands straight to the terminal
       - name: "Step 5: View Logs & Execute Command Inside"
