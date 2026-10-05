@@ -48,3 +48,17 @@ jobs:
           curl -s http://localhost:8080 |grep title 
           echo "========docker logs ================"
           docker logs web 
+
+          # --- STEP 4: Walk through the container lifecycle ---
+      - name: "Step 4: Pause, Unpause, Stop Lifecycle"
+        run: |
+          cd module1-lab
+          docker inspect -f '{{.State.Status}}' web
+          docker pause web
+          docker inspect -f '{{.State.Status}}' web
+          docker unpause web
+          docker inspect -f '{{.State.Status}}' web
+          docker stop web
+          docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
+          docker ps -a
+          docker start web
