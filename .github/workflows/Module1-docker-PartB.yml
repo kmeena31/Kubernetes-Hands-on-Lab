@@ -58,3 +58,14 @@ jobs:
 
             echo '--- 4. both: -e wins ---'
             docker run --rm --env-file app.env -e APP_ENV=prod env-demo
+
+
+        #Goal: See data disappear without a volume, then keep it with a named volume.
+      - name: "step 5: Keep your data: volumes "
+        run: | 
+              echo " Without a volume, data dies with the container"
+              cd module1-lab/
+              docker run --name temp-writer alpine:3.22 sh -c 'echo "important data" > /data.txt'
+              docker rm temp-writer
+              docker run --rm alpine:3.22 cat /data.txt
+            
