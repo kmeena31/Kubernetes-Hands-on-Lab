@@ -15,10 +15,11 @@ jobs:
       - name: Checkout project code
         uses: actions/checkout@v4
 
-      # Step 2: Verify Docker is working by checking its version
-      - name: Verify Docker Installation
-        run: docker --version
-
-      # Step 3: Run a test container from Docker Hub
-      - name: Run Hello World Container
-        run: docker run hello-world
+      # The "|" character tells GitHub Actions to read the following lines as a shell script
+      - name: Pull Docker Images in a Loop
+        run: |
+          for img in hello-world nginx:1.28-alpine ubuntu:24.04 alpine:3.22 node:24-alpine; do
+            echo "Pulling image: $img"
+            docker pull "$img"
+          done
+      
