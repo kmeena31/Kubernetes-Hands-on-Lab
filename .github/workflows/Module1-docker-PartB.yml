@@ -24,4 +24,5 @@ jobs:
          docker build --progress=plain --no-cache -f Dockerfile.broken -t first-image-broken .
          docker run --rm first-image-broken
          docker inspect -f 'CMD it inherited: {{json .Config.Cmd}}' first-image-broken
-        
+         echo "============list docker images==============="
+         docker images 
