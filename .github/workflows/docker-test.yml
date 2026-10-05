@@ -21,7 +21,7 @@ jobs:
           echo ""
           docker --version
           docker info --format '{{.ServerVersion}}'
-          docker run --rm hello-world
+          docker run --rm nginx:1.28-alpine
           mkdir module1-lab
 
       # --- STEP 2: pull an image and look at its layers ---
@@ -42,8 +42,9 @@ jobs:
           cd module1-lab
           echo "========Run detached nginx container======="
           docker run --rm -d --name web -p 8080:80 nginx:1.28-alpine
+          echo "============checking docker ps command=============""
           docker ps --filter "name=web"
-          echo "========Check container logs======="
+          echo "========Check title======="
           sleep 3 # Give nginx a moment to wakeup
           curl -s http://localhost:8080 |grep title 
           echo "========docker logs ================"
@@ -53,6 +54,11 @@ jobs:
       - name: "Step 4: Pause, Unpause, Stop Lifecycle"
         run: |
           cd module1-lab
+          echo "============docker creation - ========"
+          docker create --name web-created nginx:1.28-alpine
+          docker inspecy -f '{{.State.Status}}' web-created
+          docker rm web-created 
+
           docker inspect -f '{{.State.Status}}' web
           echo "===========docker pause status========="
           docker pause web
@@ -61,10 +67,11 @@ jobs:
           docker unpause web
           docker inspect -f '{{.State.Status}}' web
           echo "===========docker stop status========="
-        #   docker stop web
-        #   docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
-        #   echo "===========docker ps -a ========="
-        #   docker ps -a
+          docker stop web
+          docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
+          echo "===========docker ps -a ========="
+          docker ps -a
+
         #   docker start web
        ## --- STEP 5: Read logs and open a shell inside ---
       # Note: We simulate the interactive shell step by passing commands straight to the terminal
