@@ -96,3 +96,14 @@ jobs:
           docker top web
           echo "=======To check docker port =============="
           docker port web
+
+        # --- STEP 7: stop vs kill — see the difference ---
+      - name: "Step 7: Compare Stop vs Kill Exit Codes"
+        run: |
+          cd module1-lab
+          docker stop web
+          docker inspect -f 'web -> exit code {{.State.ExitCode}}' web
+          docker run -d --name web-kill nginx:1.28-alpine
+          docker kill web-kill
+          docker inspect -f 'web-kill -> exit code {{.State.ExitCode}}' web-kill
+          docker rm web web-kill
