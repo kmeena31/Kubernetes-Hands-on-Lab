@@ -99,7 +99,7 @@ jobs:
 
         # --- STEP 7: stop vs kill — see the difference ---
       - name: "Step 7: Compare Stop vs Kill Exit Codes"
-        continue-on-error: true 
+        continue-on-error: true  #Tell GitHub to ignore errors on that specific step
         run: |
           cd module1-lab
           echo "=======Docker web is stopping======="

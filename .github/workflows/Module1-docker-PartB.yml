@@ -1,0 +1,27 @@
+name: PartB -  Build and configure your own images
+# This triggers the action every time you push code to the main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-lab-part-b:
+        # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # Step 2: Build your first image — RUN vs CMD
+      - name: "Step 1: Build first image"
+        run: |
+         cd  module1-lab/first-image
+         echo "=== Displaying content of Dockerfile.broken====="
+         cat Dockerfile.broken
+         echo "=====Building image====="
+         docker build --progress=plain --no-cache -f Dockerfile.broken -t first-image-broken .
+         docker run --rm first-image-broken
+         docker inspect -f 'CMD it inherited: {{json .Config.Cmd}}' first-image-broken
+        
