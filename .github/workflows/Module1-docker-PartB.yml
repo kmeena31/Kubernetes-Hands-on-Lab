@@ -6,7 +6,7 @@ on:
 
 jobs:
   run-lab-part-b:
-        # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
     runs-on: ubuntu-latest
 
     steps:
@@ -15,14 +15,26 @@ jobs:
         uses: actions/checkout@v4
 
       # Step 2: Build your first image — RUN vs CMD
-      - name: "Step 1: Build first image"
+      - name: "Step 2: Build first image"
         run: |
-         cd  module1-lab/first-image
-         echo "=== Displaying content of Dockerfile.broken====="
-         cat Dockerfile.broken
-         echo "=====Building image====="
-         docker build --progress=plain --no-cache -f Dockerfile.broken -t first-image-broken .
-         docker run --rm first-image-broken
-         docker inspect -f 'CMD it inherited: {{json .Config.Cmd}}' first-image-broken
-         echo "============list docker images==============="
-         docker images 
+          cd module1-lab/first-image
+          echo "=== Displaying content of Dockerfile.broken====="
+          cat Dockerfile.broken
+          echo "=====Building image====="
+          docker build --progress=plain --no-cache -f Dockerfile.broken -t first-image-broken .
+          docker run --rm first-image-broken
+          docker inspect -f 'CMD it inherited: {{json .Config.Cmd}}' first-image-broken
+          echo "============list docker images==============="
+          docker images
+
+      - name: "Step 3: Corrected first image file"
+        run: |
+          cd module1-lab/first-image
+          echo "=== Displaying content of Dockerfile ====="
+          cat Dockerfile
+          echo "====== building first image with correct file name - Dockerfile ====="
+          docker build -t my_first_image .
+          echo "====== Listing my first image ========"
+          docker images my_first_image
+          echo "====== Run the first image =========="
+          docker run --rm my_first_image
