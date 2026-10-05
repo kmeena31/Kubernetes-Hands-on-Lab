@@ -54,11 +54,6 @@ jobs:
       - name: "Step 4: Pause, Unpause, Stop Lifecycle"
         run: |
           cd module1-lab
-          echo "============docker creation - ========"
-          docker create --name web-created nginx:1.28-alpine
-          docker inspecy -f '{{.State.Status}}' web-created
-          docker rm web-created 
-
           docker inspect -f '{{.State.Status}}' web
           echo "===========docker pause status========="
           docker pause web
@@ -66,11 +61,11 @@ jobs:
           echo "===========docker unpause status========="
           docker unpause web
           docker inspect -f '{{.State.Status}}' web
-          echo "===========docker stop status========="
-          docker stop web
-          docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
-          echo "===========docker ps -a ========="
-          docker ps -a
+        #   echo "===========docker stop status========="
+        #   docker stop web
+        #   docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
+        #   echo "===========docker ps -a ========="
+        #   docker ps -a
 
         #   docker start web
        ## --- STEP 5: Read logs and open a shell inside ---
