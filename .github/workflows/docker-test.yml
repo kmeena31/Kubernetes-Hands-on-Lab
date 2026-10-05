@@ -54,11 +54,15 @@ jobs:
         run: |
           cd module1-lab
           docker inspect -f '{{.State.Status}}' web
+          #echo "===========docker pause status========="
           docker pause web
           docker inspect -f '{{.State.Status}}' web
+          #echo "===========docker unpause status========="
           docker unpause web
           docker inspect -f '{{.State.Status}}' web
+          #echo "===========docker stop status========="
           docker stop web
           docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
+          #echo "===========docker ps -a ========="
           docker ps -a
           docker start web
