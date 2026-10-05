@@ -69,4 +69,10 @@ jobs:
               docker run --name temp-writer alpine:3.22 sh -c 'echo "important data" > /data.txt'
               docker rm temp-writer
               docker run --rm alpine:3.22 cat /data.txt
-            
+              
+              echo "Named volume — survives container removal"
+              docker volume create app-data
+                for i in 1 2 3; do
+                    docker run --rm -v app-data:/data alpine:3.22 sh -c "echo 'run $i wrote this' >> /data/log.txt"
+                done
+              docker run --rm -v app-data:/data alpine:3.22 cat /data/log.txt
