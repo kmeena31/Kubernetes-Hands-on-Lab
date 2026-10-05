@@ -105,4 +105,6 @@ jobs:
           docker stop web
           echo "=======Docker web is stopped======="
           docker inspect -f 'web -> exit code {{.State.ExitCode}}' web
+          echo "=======Deleting web container======="
+          docker rm web
          
