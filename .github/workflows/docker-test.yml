@@ -65,4 +65,32 @@ jobs:
           docker inspect -f '{{.State.Status}} (exit code {{.State.ExitCode}})' web
           echo "===========docker ps -a ========="
           docker ps -a
-          docker start web
+          #docker start web
+       ## --- STEP 5: Read logs and open a shell inside ---
+      # Note: We simulate the interactive shell step by passing commands straight to the terminal
+      - name: "Step 5: View Logs & Execute Command Inside"
+        run: |
+          cd module1-lab
+          curl -s http://localhost:8080 > /dev/null
+          echo "===========docker logs==========="
+          docker logs --tail 10 web
+          echo "=========Docker exec to check release version============="
+          docker exec web cat /etc/os-release | head -1
+          echo "=========Docker exec to check ls command ============="
+          docker exec web ls /usr/share/nginx/html
+
+         #  # --- STEP 6: Inspect and debug like an operator ---
+      - name: "Step 6: Inspect Metadata and Stats"
+        run: |
+          cd module1-lab
+          docker inspect web | head -30
+          echo ""===== To check .config.image file =============="
+          docker inspect -f '{{.Config.Image}}' web
+          echo "===== To check .Network.setting file =============="
+          docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' web
+          echo "=======To check docker stats =============="
+          docker stats web --no-stream
+           echo "=======To check top stats =============="
+          docker top web
+           echo "=======To check docker port =============="
+          docker port web
