@@ -42,7 +42,7 @@ jobs:
           cd module1-lab
           echo "========Run detached nginx container======="
           docker run --rm -d --name web -p 8080:80 nginx:1.28-alpine
-          echo "============checking docker ps command=============""
+          echo "============checking docker ps command============="
           docker ps --filter "name=web"
           echo "========Check title======="
           sleep 3 # Give nginx a moment to wakeup
