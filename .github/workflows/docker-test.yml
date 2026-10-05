@@ -22,4 +22,8 @@ jobs:
             echo "Pulling image: $img"
             docker pull "$img"
           done
-      
+      # Verification step: This lists all images currently sitting on the runner
+      - name: Verify Installed Images
+        run: |
+          echo "=== Listing Installed Docker Images ==="
+          docker images
