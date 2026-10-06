@@ -45,27 +45,10 @@ jobs:
       - name: "Step 4: Log in, Tag and push to DockerHub"
         env:  
             DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: | 
-            cd module1-lab/demo-api/
-            DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
-
-             # 1. Log in directly using the token/password
-            docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
-            
-            # 2. Tag the images
-            docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:1.0.0
-            docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
-
-            # 3. Push the images
-            docker push $DOCKERHUB_USER/module1-demo-api:1.0.0
-            docker push $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
-
-            # 4. List remote tags to verify
-            curl -s "https://hub.docker.com/v2/namespaces/$DOCKERHUB_USER/repositories/module1-demo-api/tags" | grep -o '"name":"[^"]*"'
-            
-            #5. Delete the local copy and pull it back from Docker Hub
-            docker image rm $DOCKERHUB_USER/module1-demo-api:1.0.0
-            docker pull $DOCKERHUB_USER/module1-demo-api:1.0.0
+        run: |
+          cd module1-lab/demo-api/
+          chmod +x push-docker.sh
+          bash module1-lab/demo-api/deploy.sh
 
     #Goal: See the SIGTERM handler from app.js working — and what happens without one.
       - name: "step 5: Graceful shutdown in action"
