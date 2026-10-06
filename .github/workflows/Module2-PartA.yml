@@ -30,7 +30,7 @@ jobs:
 
       - name: " Step -2 : Create 3-node cluster"
         run: |
-          kind create cluster --config /Module2-lab/Part-A/kind-cluster.yaml
+          kind create cluster --config Module2-lab/Part-A/kind-cluster.yaml
           
          
           
