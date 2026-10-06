@@ -52,4 +52,5 @@ jobs:
         run: | 
             cd module1-lab/demo-api/
             DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
-            echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin
+            docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
+
