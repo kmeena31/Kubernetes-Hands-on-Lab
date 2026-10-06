@@ -45,10 +45,7 @@ jobs:
       - name: "Step 4: Log in, Tag and push to DockerHub"
         env:  
             DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run: |
-          cd module1-lab/demo-api/
-          chmod +x module1-lab/demo-api/deploy.sh
-          bash module1-lab/demo-api/deploy.sh
+        run:   bash module1-lab/demo-api/deploy.sh
 
     #Goal: See the SIGTERM handler from app.js working — and what happens without one.
       - name: "step 5: Graceful shutdown in action"
