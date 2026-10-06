@@ -85,16 +85,16 @@ jobs:
         run: |
              cd module1-lab/demo-api/ 
              echo "=========Removing volume for web, demo-api============="
-             docker rm -fv web demo-api 2>/dev/null
+             docker rm -fv web demo-api 2>/dev/null || true
              echo "=========Removing volume for app-data============="
-             docker volume rm app-data 2>/dev/null
+             docker volume rm app-data 2>/dev/null  || true
              echo "=========Removing image============="
              docker image rm module1-demo-api:1.0.0 \
               $DOCKERHUB_USER/module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d \
-              my_first_image first-image-broken env-demo 2>/dev/null
+              my_first_image first-image-broken env-demo 2>/dev/null || true
 
               echo "=========logout message ============="
-              docker logout
+              docker logout || true
               echo "=========ps -a output============="
               docker ps -a
               echo "=========system df output============="
