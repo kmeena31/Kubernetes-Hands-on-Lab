@@ -53,4 +53,11 @@ jobs:
             cd module1-lab/demo-api/
             DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
             docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
+            
+            docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:1.0.0
+            docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
 
+            docker push $DOCKERHUB_USER/module1-demo-api:1.0.0
+            docker push $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
+
+            curl -s "https://hub.docker.com/v2/namespaces/$DOCKERHUB_USER/repositories/module1-demo-api/tags" | grep -o '"name":"[^"]*"'
