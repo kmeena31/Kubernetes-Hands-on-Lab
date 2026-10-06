@@ -41,10 +41,9 @@ jobs:
           docker exec demo-api whoami
           docker images module1-demo-api
 
-            #Goal: Build the image, check it is healthy and check it does not run as root.
-      - name: "Step 4 : Log in to Docker Hub, push two tags to the techitfactory namespace, delete the local copy and pull it back.
-        run: | Tag and push to Docker Hub"
+            #Goal: Log in to Docker Hub, push two tags to the techitfactory namespace, delete the local copy and pull it back.
+      - name: "Step 4 : Tag and push to Docker Hub"
+        run: | 
             cd module1-lab/demo-api/
             DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
             docker login -u $DOCKERHUB_USER
-            
