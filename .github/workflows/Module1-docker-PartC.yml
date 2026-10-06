@@ -80,3 +80,23 @@ jobs:
              time docker stop no-handler
              docker inspect -f 'exit code {{.State.ExitCode}}' no-handler
              docker rm no-handler
+     #Goal: Remove everything this lab created — and nothing else.
+      - name: "step 6: Clean up everything"
+        run: |
+             cd module1-lab/demo-api/ 
+             echo "=========Removing volume for web, demo-api============="
+             docker rm -fv web demo-api 2>/dev/null
+             echo "=========Removing volume for app-data============="
+             docker volume rm app-data 2>/dev/null
+             echo "=========Removing image============="
+             docker image rm module1-demo-api:1.0.0 \
+              $DOCKERHUB_USER/module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d \
+              my_first_image first-image-broken env-demo 2>/dev/null
+
+              echo "=========logout message ============="
+              docker logout
+              echo "=========ps -a output============="
+              docker ps -a
+              echo "=========system df output============="
+              docker system df
+
