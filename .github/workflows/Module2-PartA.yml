@@ -1,0 +1,27 @@
+name: Kubernetes Architecture & kubectl — Step-by-Step Lab
+# Build your lab cluster
+# Steps 1–3 · kind (Kubernetes IN Docker) · ~20 min
+# 1. Install kubectl and kind
+# 2. Create a 3-node cluster
+# 3. First contact with the cluster
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  Module2-run-lab-part-a:
+    # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # --- STEP 1: Install Module1 - step14 ---
+      - name: "Step 1: Tag and push to Docker Hub"
+        env:  
+            DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run:   bash module1-lab/demo-api/deploy.sh
+
+         
