@@ -66,5 +66,17 @@ jobs:
             #5. Delete the local copy and pull it back from Docker Hub
             docker image rm $DOCKERHUB_USER/module1-demo-api:1.0.0
             docker pull $DOCKERHUB_USER/module1-demo-api:1.0.0
-            
-            
+
+    #Goal: See the SIGTERM handler from app.js working — and what happens without one.
+      - name: "step 5: Graceful shutdown in action"
+        run: |
+             cd module1-lab/demo-api/ 
+             time docker stop demo-api
+             docker logs demo-api
+             docker inspect -f 'exit code {{.State.ExitCode}}' demo-api
+             docker rm demo-api
+
+             docker run -d --name no-handler node:24-alpine node -e 'setInterval(() => {}, 1000)'
+             time docker stop no-handler
+             docker inspect -f 'exit code {{.State.ExitCode}}' no-handler
+             docker rm no-handler
