@@ -22,7 +22,7 @@ jobs:
           cd module1-lab/demo-api
           docker run --rm -v "$(pwd)":/app -w /app node:24-alpine npm install --package-lock-only
           ls package-lock.json
-
+        #Goal: Build the image, check it is healthy and check it does not run as root.
       - name: "Step 3 : Build, run and verify"
         run: | 
           cd module1-lab/demo-api
@@ -40,3 +40,11 @@ jobs:
           docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
           docker exec demo-api whoami
           docker images module1-demo-api
+
+            #Goal: Build the image, check it is healthy and check it does not run as root.
+      - name: "Step 4 : Log in to Docker Hub, push two tags to the techitfactory namespace, delete the local copy and pull it back.
+        run: | Tag and push to Docker Hub"
+            cd module1-lab/demo-api/
+            DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
+            docker login -u $DOCKERHUB_USER
+            
