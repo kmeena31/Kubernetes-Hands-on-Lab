@@ -38,12 +38,14 @@ jobs:
           # 4. Install Kind & nginx packages"
           echo "Installing Kind package"
             docker pull kindest/node:v1.37.0
-            kind version
-            kubectl version --client
-
+            
           echo "Installing Kind package" 
             docker pull nginx:1.28-alpine
-            docker info --format '{{.ServerVersion}}'
+            
+          #5. checking kind,nginx is installed or not 
+          kubectl version --client
+          kind version
+          docker info --format '{{.ServerVersion}}'
           
          
           
