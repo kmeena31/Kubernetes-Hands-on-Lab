@@ -18,10 +18,20 @@ jobs:
       - name: Checkout project code
         uses: actions/checkout@v4
 
-      # --- STEP 1: Install Module1 - step14 ---
-      - name: "Step 1: Tag and push to Docker Hub"
-        env:  
-            DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-        run:   bash module1-lab/demo-api/deploy.sh
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+            username: meenakande
+            password: ${{ secrets.DOCKERHUB_TOKEN }}  # Safely uses your GitHub Secret
 
+      - name: Pull and Tag Image
+        run: |
+          # 1. Pull the image from your Docker Hub repository
+          docker pull meenakande/module1-demo-api:1.0.0
+          
+          # 2. (Optional) Create a local tag if subsequent scripts need the short name
+          docker tag meenakande/module1-demo-api:1.0.0 module1-demo-api:1.0.0
+          
+          # 3. Verify the image is locally available on the runner
+          docker images
          
