@@ -18,6 +18,6 @@ curl -s "https://hub.docker.com/v2/namespaces/$DOCKERHUB_USER/repositories/modul
 # 4. List remote tags to verify
 curl -s "https://hub.docker.com/v2/namespaces/$DOCKERHUB_USER/repositories/module1-demo-api/tags" | grep -o '"name":"[^"]*"'
             
-#5. Delete the local copy and pull it back from Docker Hub
-docker image rm $DOCKERHUB_USER/module1-demo-api:1.0.0
-docker pull $DOCKERHUB_USER/module1-demo-api:1.0.0
+# #5. Delete the local copy and pull it back from Docker Hub
+# docker image rm $DOCKERHUB_USER/module1-demo-api:1.0.0
+# docker pull $DOCKERHUB_USER/module1-demo-api:1.0.0
