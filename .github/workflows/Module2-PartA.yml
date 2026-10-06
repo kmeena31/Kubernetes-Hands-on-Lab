@@ -24,7 +24,7 @@ jobs:
             username: meenakande
             password: ${{ secrets.DOCKERHUB_TOKEN }}  # Safely uses your GitHub Secret
 
-      - name: Pull and Tag Image
+      - name: "Pre-req-1: Pull and Tag Image"
         run: |
           # 1. Pull the image from your Docker Hub repository
           docker pull meenakande/module1-demo-api:1.0.0
@@ -34,4 +34,9 @@ jobs:
           
           # 3. Verify the image is locally available on the runner
           docker images
-         
+      - name: "Pre-req-2. Install Kind & nginx"
+        run: |
+          echo "Installing Kind package"
+            docker pull kindest/node:v1.37.0
+          echo "Installing Kind package" 
+            docker pull nginx:1.28-alpine
