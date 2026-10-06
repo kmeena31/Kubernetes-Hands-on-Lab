@@ -34,8 +34,7 @@ jobs:
           
           # 3. Verify the image is locally available on the runner
           docker images
-      - name: "Pre-req-2. Install Kind & nginx"
-        run: |
+          # 4. Install Kind & nginx packages"
           echo "Installing Kind package"
             docker pull kindest/node:v1.37.0
           echo "Installing Kind package" 
