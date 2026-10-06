@@ -12,6 +12,9 @@ docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:1.0.0
 docker tag module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
 
 # 3. Push the images
+docker push $DOCKERHUB_USER/module1-demo-api:1.0.0
+docker push $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d
+
 # 4. List remote tags to verify
 curl -s "https://hub.docker.com/v2/namespaces/$DOCKERHUB_USER/repositories/module1-demo-api/tags" | grep -o '"name":"[^"]*"'
 
