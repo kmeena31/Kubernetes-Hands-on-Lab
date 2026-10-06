@@ -42,8 +42,14 @@ jobs:
           docker images module1-demo-api
 
             #Goal: Log in to Docker Hub, push two tags to the techitfactory namespace, delete the local copy and pull it back.
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: meenakande
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: "Step 4 : Tag and push to Docker Hub"
         run: | 
             cd module1-lab/demo-api/
             DOCKERHUB_USER=meenakande     # learners: your own Docker Hub user name
-            docker login -u $DOCKERHUB_USER
+            docker login -u "$DOCKERHUB_USER" --password-stdin
