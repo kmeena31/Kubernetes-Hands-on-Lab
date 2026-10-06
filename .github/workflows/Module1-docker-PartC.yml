@@ -47,7 +47,7 @@ jobs:
             DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
           cd module1-lab/demo-api/
-          chmod +x deploy.sh
+          chmod +x module1-lab/demo-api/deploy.sh
           bash module1-lab/demo-api/deploy.sh
 
     #Goal: See the SIGTERM handler from app.js working — and what happens without one.
