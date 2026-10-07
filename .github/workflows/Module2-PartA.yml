@@ -34,6 +34,18 @@ jobs:
           echo "========checking cluster nodes================="
           docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}'
           
+       #Goal: Prove kubectl can reach the API server, and meet your three nodes.
+      - name: "step 3: First contact with the cluster"
+        run: |
+          kubectl wait --for=condition=Ready nodes --all --timeout=120s
+          echo "=======Kubectl version info==========="
+          kubectl --version 
+          echo "============cluster info=============="
+          kubectl cluster-info
+          echo "============= get nodes =============="
+          kubectl get nodes
+          echo "============ get namespaces =========="
+          kubectl get namespaces
          
           
          
