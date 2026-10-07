@@ -46,6 +46,8 @@ jobs:
           kubectl get nodes
           echo "============ get namespaces =========="
           kubectl get namespaces
-         
-          
-         
+        #Goal: Find every architecture component from the slides, running as a real pod on a real node.
+      - name: "step 4 - See the control plane running"
+        run: |
+          cd Module2-lab/
+          kubectl get pods -n kube-system -o wide --sort-by=.spec.nodeName
