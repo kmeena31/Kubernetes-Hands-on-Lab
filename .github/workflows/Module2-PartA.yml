@@ -51,3 +51,11 @@ jobs:
         run: |
           cd Module2-lab/
           kubectl get pods -n kube-system -o wide --sort-by=.spec.nodeName
+
+           #Goal: Step inside a node and find the kubelet and the container runtime — and notice what's missing.
+      - name: "step 5 - Look inside a worker node"
+        run: |
+          cd Module2-lab/
+          docker exec lab-worker systemctl is-active kubelet containerd
+          docker exec lab-worker sh -c 'command -v docker || echo "docker: not installed"'
+          docker exec lab-worker crictl ps
