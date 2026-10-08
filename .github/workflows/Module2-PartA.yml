@@ -30,22 +30,12 @@ jobs:
 
       - name: " Step -2 : Create 3-node cluster"
         run: |
-          kind create cluster --config Module2-lab/Part-A/kind-cluster.yaml
-          echo "========checking cluster nodes================="
-          docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}'
-
-       #Goal: Prove kubectl can reach the API server, and meet your three nodes.
+            bash Module2-lab/Part-A/Step2-create3nodecluster.sh
+      
       - name: "step 3: First contact with the cluster"
         run: |
-          kubectl wait --for=condition=Ready nodes --all --timeout=120s
-          echo "=======Kubectl version info==========="
-          kubectl version 
-          echo "============cluster info=============="
-          kubectl cluster-info
-          echo "============= get nodes =============="
-          kubectl get nodes
-          echo "============ get namespaces =========="
-          kubectl get namespaces
+          bash Module2-lab/Part-A/Step3-Firstcontactwiththecluster.sh
+
         #Goal: Find every architecture component from the slides, running as a real pod on a real node.
       - name: "step 4 - See the control plane running"
         run: |
@@ -146,5 +136,5 @@ jobs:
             kubectl api-resources | grep -wE 'pods|nodes|namespaces|services|deployments'
             kubectl api-resources | wc -l
             echo "========= Read the docs for any field ==================="
-            kubectl explain pod.spec.containers.image
+            kubectl explain pod.
 
