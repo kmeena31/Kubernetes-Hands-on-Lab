@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e  # Exit immediately if any command fails
+# 🚀 CRITICAL FIX: Tells Bash to expand aliases inside this script execution
+shopt -s expand_aliases
 
 cd Module2-lab/Part-C/
 alias k=kubectl
