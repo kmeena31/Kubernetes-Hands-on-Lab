@@ -130,16 +130,16 @@ jobs:
            kubectl get nodes -o jsonpath='{.items[*].metadata.name}'; echo
 
            echo "=========Build your own table============="
-           kubectl get nodes -o custom-columns=\
-             'NAME:.metadata.name,\
-              RUNTIME:.status.nodeInfo.containerRuntimeVersion,\
-              KUBELET:.status.nodeInfo.kubeletVersion, \
-              CPU:.status.capacity.cpu'
+           kubectl get nodes -o custom-columns='NAME:.metadata.name,RUNTIME:.status.nodeInfo.containerRuntimeVersion,KUBELET:.status.nodeInfo.kubeletVersion,CPU:.status.capacity.cpu'
            
            echo "=========== Full objects: YAML vs KYAML =========="
            kubectl get node lab-worker -o yaml |head -8  # In Yaml
 
            Kubectl get node lab-worker -o kyaml |head -8 # In kyaml
-
+       # Goal: Use kubectl as its own manual: deep-inspect a node, list every resource type, and read field docs.
+      - name: "Step 9 - Describe, discover and explain"
+        run: |
+            kubectl describe node lab-worker | grep -E '^(Name|Roles|Taints):|Ready|InternalIP|Container Runtime|Non-terminated'
+            kubectl describe node lab-control-plane | grep Taints
 
 
