@@ -56,11 +56,27 @@ jobs:
       - name: "step 5 - Look inside a worker node"
         run: |
           cd Module2-lab/
+          echo "=== systemctl is active =================="
           docker exec lab-worker systemctl is-active kubelet containerd
+          echo "============message says docker is not instaled if not =================="
           docker exec lab-worker sh -c 'command -v docker || echo "docker: not installed"'
+          echo "=== s docker lab-worker ps status =================="
           docker exec lab-worker crictl ps
+          echo "=== kubectl get nodes =================="
           kubectl get nodes -o wide
+          echo "=== Running bas =================="
           docker exec -it lab-worker bash
            # now inside the node:
           ps -e -o comm | grep -E 'kubelet|containerd' | sort -u
           exit
+    #Goal: See the HTTPS request behind a kubectl command, call the API directly, then peek at etcd.
+      - name: "step 5 - Look inside a worker node"
+        run: |
+          cd Module2-lab/
+          echo "======Turn up verbosity to see the real request======"
+          kubectl get nodes -v=6 2>&1 |grep -E 'Config loaded|Response'
+          echo "====Call API endpoints directly======================"
+          kubectl get --raw /readyz
+          echo 
+          kubectl get --raw '/readyz?response' |tail -3
+          kubectl get --raw  /api/v1/namespace/default |head -C 200 ; echo
