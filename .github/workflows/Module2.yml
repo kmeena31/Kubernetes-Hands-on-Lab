@@ -69,3 +69,6 @@ jobs:
       - name: "Step13 -Scheduling: cordon a node "
         run: |
            bash Module2-lab/Part-D/Step13-Scheduling-cordonanode.sh
+      - name: "Step 14-Bonus: run yourModule1apponKubernetes"
+        run: |
+           bash Module2-lab/Part-D/Step14-Bonus-runyourModule1apponKubernetes.sh
