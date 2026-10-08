@@ -90,4 +90,17 @@ jobs:
             --cert   /etc/kubernetes/pki/etcd/server.crt \
             --key    /etc/kubernetes/pki/etcd/server.key \
               get    /registry/minions --prefix --keys-only
-              
+
+      #Goal: Understand what a context is, switch between two of them, and recognise the two most common connection errors.
+      - name: "Step 7 - kubeconfig and contexts"
+        run: |  
+          echo "===== Displaying current context ====="  
+          kubectl config current-context
+          echo "====== Displaying get context ========= "
+          kubectl config get-contexts
+          echo "======= Displaying view ============="
+          kubectl config view --minify
+
+
+
+
