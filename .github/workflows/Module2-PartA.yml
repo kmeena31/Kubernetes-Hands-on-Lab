@@ -64,13 +64,17 @@ jobs:
           docker exec lab-worker crictl ps
           echo "=== kubectl get nodes =================="
           kubectl get nodes -o wide
-          echo "=== Running bas =================="
-          docker exec -it lab-worker bash
-           # now inside the node:
-          ps -e -o comm | grep -E 'kubelet|containerd' | sort -u
-          exit
+          
+          echo "=== Running process check inside node =================="
+          docker exec lab-worker sh -c "ps -e -o comm | grep -E 'kubelet|containerd' | sort -u"
+          
+        #   echo "=== Running bash inside docker =================="
+        #   docker exec -it lab-worker bash
+        #    # now inside the node:
+        #   ps -e -o comm | grep -E 'kubelet|containerd' | sort -u
+        #   exit
     #Goal: See the HTTPS request behind a kubectl command, call the API directly, then peek at etcd.
-      - name: "step 5 - Look inside a worker node"
+      - name: "step 6 - kubectl is just an API client"
         run: |
           cd Module2-lab/
           echo "======Turn up verbosity to see the real request======"
