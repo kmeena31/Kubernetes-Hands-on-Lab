@@ -63,3 +63,6 @@ jobs:
       - name: "Step 11 - Deploy an app and read who did what"
         run: |
           bash Module2-lab/Part-D/Step11-Deployanapp_readwhodidwhat.sh
+      - name: "Step12 - Self healing delete a pod on purpose"
+        run: |
+           bash Module2-lab/Part-D/Step12-Self-healing-deleteapodonpurpose.sh
