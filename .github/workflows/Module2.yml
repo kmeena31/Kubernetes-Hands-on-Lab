@@ -23,7 +23,7 @@ jobs:
         with:
             username: meenakande
             password: ${{ secrets.DOCKERHUB_TOKEN }}  # Safely uses your GitHub Secret
-            
+
       - name: "Pre-req-1: Pull and Tag Image"
         run: |
           bash Module2-lab/Part-A/pull_tag_image.sh
@@ -57,3 +57,6 @@ jobs:
       - name: "Step 9 - Describe, discover and explain"
         run: |
           bash Module2-lab/Part-C/Step9-Describediscoverandexplain.sh
+      - name: "Step10 - Shortcuts: alias and tab completion"
+        run: |
+          bash Module2-lab/Part-C/Step10-Shortcuts-alias_tabcompletion.sh
