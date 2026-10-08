@@ -109,6 +109,10 @@ jobs:
           kubectl config get-contexts
           echo "=========== get pods ========================"
           kubectl get pods |head -4
+          echo "=========== switch back======================"
+          kubectl config use-context kind-lab
+          echo "=========== check get pods =================="
+          kubectl get pods
 
 
 
