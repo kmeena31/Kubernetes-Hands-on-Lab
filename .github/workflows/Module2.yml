@@ -23,12 +23,7 @@ jobs:
         with:
             username: meenakande
             password: ${{ secrets.DOCKERHUB_TOKEN }}  # Safely uses your GitHub Secret
-      - name: Upload Kubeconfig
-        uses: actions/upload-artifact@v4
-        with:
-          name: kubeconfig
-          path: ~/.kube/config
-
+            
       - name: "Pre-req-1: Pull and Tag Image"
         run: |
           bash Module2-lab/Part-A/pull_tag_image.sh

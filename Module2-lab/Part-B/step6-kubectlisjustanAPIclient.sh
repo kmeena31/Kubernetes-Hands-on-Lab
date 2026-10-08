@@ -11,7 +11,7 @@ kubectl get --raw '/readyz?response' |tail -3
 kubectl get --raw /api/v1/namespaces/default |head -n 200 ; echo
 echo "===Look at where nodes are stored in etcd (read-only)======"
 kubectl -n kube-system exec etcd-lab-control-plane -- etcdctl \
-    --cacert /etc/kubernetes/pki/etcd/ca.crt
+    --cacert /etc/kubernetes/pki/etcd/ca.crt \
     --cert   /etc/kubernetes/pki/etcd/server.crt \
     --key    /etc/kubernetes/pki/etcd/server.key \
     get /registry/minions --prefix --keys-only
