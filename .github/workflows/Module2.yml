@@ -43,11 +43,9 @@ jobs:
       - name: "step 4 - See the control plane running"
         run: |
           bash Module2-lab/Part-B/Step4-SeetheControlplanerunning.sh
-
       - name: "step 5 - Look inside a worker node"
         run: |
          bash Module2-lab/Part-B/Step5-Lookinsideaworkernode.sh
-
       - name: "step 6 - kubectl is just an API client"
         run: |
           bash Module2-lab/Part-B/step6-kubectlisjustanAPIclient.sh
