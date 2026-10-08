@@ -13,3 +13,8 @@ kubectl rollout status deployment/web
 echo "======Checking the distribution of pods across nodes======"
 kubectl get pods -l app=web -o wide --sort-by=.spec.nodeName
 echo "======Cordon complete======"
+
+echo "=========Undo, and remove the demo app ==========="
+kubectl uncordon lab-worker2
+kubectl delete deployment web
+echo "=========Demo app removed and node uncordoned=========="
