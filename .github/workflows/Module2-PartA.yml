@@ -113,6 +113,10 @@ jobs:
           kubectl config use-context kind-lab
           echo "=========== check get pods =================="
           kubectl get pods
+          echo "=========== Recognise the two classic errors==========="
+          kubectl get nodes --context does-not-exist
+          echo "============ checking server connect & port ==========="
+          kubectl get nodes --server https://127.0.0.1:1 --request-timeouts=5s 2>&1 |tail -1 
 
 
 
