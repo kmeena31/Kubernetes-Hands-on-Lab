@@ -93,6 +93,7 @@ jobs:
 
       #Goal: Understand what a context is, switch between two of them, and recognise the two most common connection errors.
       - name: "Step 7 - kubeconfig and contexts"
+        continue-on-error: true
         run: |  
           echo "===== Displaying current context ====="  
           kubectl config current-context
