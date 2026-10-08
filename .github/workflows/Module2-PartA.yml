@@ -118,6 +118,16 @@ jobs:
           kubectl get nodes --context does-not-exist
           echo "============ checking server connect & port ==========="
           kubectl get nodes --server https://127.0.0.1:1 --request-timeouts=5s 2>&1 |tail -1 
-
+        #Goal : Print the same nodes as a wide table, a single field, just names, custom columns, and KYAML.
+      - name: "Step 8 - Output formats — same data, your way"
+        run: |
+           cd Module2-lab/
+           echo "======== Display get nodes by wide option ==============="
+           kubectl get nodes -o wide 
+           echo "========= Display get node by name =========="
+           kubectl get nodes -o name
+           echo "========= Display by using json path option ========"
+           kubectl get nodes -o jsonpath='{.items[*].metadata.name}'; echo
+        
 
 
