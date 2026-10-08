@@ -130,7 +130,7 @@ jobs:
            kubectl get nodes -o jsonpath='{.items[*].metadata.name}'; echo
 
            echo "=========Build your own table============="
-           kubectl get-nodes -o custom-columns=\
+           kubectl get nodes -o custom-columns=\
              'NAME:.metadata.name,\
               RUNTIME:.status.nodeInfo.containerRuntimeVersion,\
               KUBELET:.status.nodeInfo.kubeletVersion, \
