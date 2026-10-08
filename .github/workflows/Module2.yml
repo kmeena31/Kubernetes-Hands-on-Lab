@@ -39,7 +39,9 @@ jobs:
   run-lab-part-b:
      runs-on: ubuntu-latest
      needs: run-lab-part-a
-     steps:      
+     steps:  
+      - name: Checkout Repository
+        uses: actions/checkout@v4    
       - name: "step 4 - See the control plane running"
         run: |
           bash Module2-lab/Part-B/Step4-SeetheControlplanerunning.sh
@@ -53,6 +55,8 @@ jobs:
      runs-on: ubuntu-latest
      needs: run-lab-part-b
      steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: "Step 7 - kubeconfig and contexts"
         continue-on-error: true
         run: |
