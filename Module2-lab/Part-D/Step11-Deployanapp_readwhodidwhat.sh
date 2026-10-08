@@ -8,5 +8,4 @@ kubectl rollout status deployment/web
 kubectl get pods -o wide
 echo "======Reading events to see each component do its job======"
 kubectl get events --sort-by=.metadata.resourceVersion\
-    -o CUSTOM-columns=:'.WHO:.source.component,WHAT:.reason,OBJECT:.involvedObject.name'\
-    | grep -E '^WHO|web'
+    -o CUSTOM-columns='.WHO:.source.component,WHAT:.reason,OBJECT:.involvedObject.name'| grep -E '^WHO|web'
