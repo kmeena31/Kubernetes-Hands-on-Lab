@@ -41,18 +41,6 @@ jobs:
         run: |
           bash Module2-lab/Part-A/Step3-Firstcontactwiththecluster.sh
 
-  run-lab-part-b:
-     runs-on: ubuntu-latest
-     needs: run-lab-part-a
-     steps:  
-      - name: Checkout Repository
-        uses: actions/checkout@v4 
-      
-      - name: Download Kubeconfig
-        uses: actions/download-artifact@v4
-        with:
-          name: kubeconfig
-          path: ~/.kube/   
       - name: "step 4 - See the control plane running"
         run: |
           bash Module2-lab/Part-B/Step4-SeetheControlplanerunning.sh
@@ -62,12 +50,6 @@ jobs:
       - name: "step 6 - kubectl is just an API client"
         run: |
           bash Module2-lab/Part-B/step6-kubectlisjustanAPIclient.sh
-  run-lab-part-c:
-     runs-on: ubuntu-latest
-     needs: run-lab-part-b
-     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
       - name: "Step 7 - kubeconfig and contexts"
         continue-on-error: true
         run: |
