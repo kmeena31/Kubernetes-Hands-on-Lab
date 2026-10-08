@@ -83,4 +83,4 @@ jobs:
           kubectl get --raw /readyz
           echo 
           kubectl get --raw '/readyz?response' |tail -3
-          kubectl get --raw  /api/v1/namespace/default |head -n 200 ; echo
+          kubectl get --raw  /api/v1/namespaces/default |head -n 200 ; echo
