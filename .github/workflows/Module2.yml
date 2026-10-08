@@ -66,3 +66,6 @@ jobs:
       - name: "Step12 - Self healing delete a pod on purpose"
         run: |
            bash Module2-lab/Part-D/Step12-Self-healing-deleteapodonpurpose.sh
+      - name: "Step13 -Scheduling: cordon a node "
+        run: |
+           bash Module2-lab/Part-D/Step13-Scheduling-cordonanode.sh
