@@ -23,6 +23,11 @@ jobs:
         with:
             username: meenakande
             password: ${{ secrets.DOCKERHUB_TOKEN }}  # Safely uses your GitHub Secret
+      - name: Upload Kubeconfig
+        uses: actions/upload-artifact@v4
+        with:
+          name: kubeconfig
+          path: ~/.kube/config
 
       - name: "Pre-req-1: Pull and Tag Image"
         run: |
@@ -41,7 +46,13 @@ jobs:
      needs: run-lab-part-a
      steps:  
       - name: Checkout Repository
-        uses: actions/checkout@v4    
+        uses: actions/checkout@v4 
+      
+      - name: Download Kubeconfig
+        uses: actions/download-artifact@v4
+        with:
+          name: kubeconfig
+          path: ~/.kube/   
       - name: "step 4 - See the control plane running"
         run: |
           bash Module2-lab/Part-B/Step4-SeetheControlplanerunning.sh
