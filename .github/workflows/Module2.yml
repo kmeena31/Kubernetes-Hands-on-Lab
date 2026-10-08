@@ -60,3 +60,6 @@ jobs:
       - name: "Step10 - Shortcuts: alias and tab completion"
         run: |
           bash Module2-lab/Part-C/Step10-Shortcuts-alias_tabcompletion.sh
+      - name: "Step 11 - Deploy an app and read who did what"
+        run: |
+          bash Module2-lab/Part-D/Step11-Deployanapp_readwhodidwhat.sh
