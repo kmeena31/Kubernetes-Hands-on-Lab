@@ -75,3 +75,6 @@ jobs:
       - name: "Step 15 - Under the hood"
         run: |
            bash Module2-lab/Part-E/Step15-Underthehood.sh
+      - name: "Step16 - Clean Up"
+        run: |
+          bash Module2-lab/Part-F/Step16-CleanUp.sh
