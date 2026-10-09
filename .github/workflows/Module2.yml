@@ -72,3 +72,6 @@ jobs:
       - name: "Step 14-Bonus: run yourModule1apponKubernetes"
         run: |
            bash Module2-lab/Part-D/Step14-Bonus-runyourModule1apponKubernetes.sh
+      - name: "Step 15 - Under the hood"
+        run: |
+           bash Module2-lab/Part-E/Step15-Underthehood.sh
