@@ -11,3 +11,10 @@ kubectl -n kube-system get configmap kube-proxy -o jsonpath='{.data.config\.conf
 # 3. cgroup version on your machine, cgroup driver in the kubelet
 docker info --format 'cgroup version: {{.CgroupVersion}}'
 kubectl get --raw /api/v1/nodes/lab-worker/proxy/configz |grep -o '"cgroupDriver":"[a-z]*"'
+
+# 4. Where do the system images come from?
+kubectl get nodes -n kube-system -o jsonpath='{range.items[*]}{.spec.containers[0].image}{"\n"}{end}'| sort -u 
+
+# 5. The control plane — spot what's missing
+kubectl get pods -n kube-system --no-headers -o custom-columns=NAME:.metadata.name | grep -E 'apiserver|controller|scheduler|etcd'
+
