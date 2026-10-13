@@ -11,7 +11,7 @@ jobs:
       # Step 1: Download your repository code onto the runner
       - name: Checkout project code
         uses: actions/checkout@v4
-
+      
       - name: Run the lab script
         run: |
           chmod +x ./Module3-lab/Pre-req.sh
