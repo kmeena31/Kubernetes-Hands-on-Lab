@@ -15,3 +15,11 @@ for img in nginx:1.28-alpine busybox:1.37; do
   kind load image-archive image.tar --name lab
 done
 rm -f image.tar
+
+#3. Start the client pod
+echo "===== Waiting for all cluster nodes to reach 'Ready' status... ===================" 
+kubectl wait --for=condition=Ready nodes --all --timeout=120s
+echo "=======  Starting the client testing Pod... ======="
+kubectl run client --image=busybox:1.37 -- sleep 3600
+echo "======= Waiting for pod/client to enter 'Ready' state...======"
+kubectl wait --for=condition=Ready pod/client --timeout=60s
