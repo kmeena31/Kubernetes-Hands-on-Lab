@@ -1,0 +1,29 @@
+name: Pods, Pod Lifecycle & Services — Step-by-Step Lab
+#Create Pods three ways, watch their lifecycle, break them on purpose and fix them, then give them stable names with Services and DNS. Finish with multi-container Pods, two 2026 features and user namespaces. Sixteen steps, in order.
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-lab-all-parts:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      - name: Run the lab script
+        run: |
+          chmod +x ./Module3-lab/Pre-req.sh
+          echo "Running Pre-req.sh script to load images into the kind cluster..."
+          ./Module3-lab/Pre-req.sh
+      - name: Start the cluster and a client Pod
+        run: |
+          cd Module3-lab
+          #Is the Module 2 cluster still there?
+          echo "Checking for existing kind cluster..."
+          kind get clusters
+          echo "Current kubectl context:"   
+          kubectl config current-context
+
+        
