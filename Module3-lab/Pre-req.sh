@@ -23,3 +23,5 @@ echo "=======  Starting the client testing Pod... ======="
 kubectl run client --image=busybox:1.37 -- sleep 3600
 echo "======= Waiting for pod/client to enter 'Ready' state...======"
 kubectl wait --for=condition=Ready pod/client --timeout=60s
+echo " ======  get pod status ======="
+kubectl get pod client -o wide
