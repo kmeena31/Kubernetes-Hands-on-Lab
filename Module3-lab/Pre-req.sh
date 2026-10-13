@@ -18,7 +18,7 @@ rm -f image.tar
 
 #Start the cluster and a client Pod
 #Goal: Make sure the 3-node kind cluster from Module 2 is running, and start a small client Pod we'll use to test things from inside the cluster.
-cd module3-lab
+cd Module3-lab/
 kind get clusters
 kubectl config current-context
 
