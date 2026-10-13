@@ -4,7 +4,7 @@ set -e
 #1. Ensure the 'lab' cluster exists
 if ! kind get clusters | grep -q "^lab$"; then
   echo "Cluster 'lab' not found. Creating it now..."
-    ./Module2-lab/Part-A/Step2-create3nodecluster.sh
+    bash Module2-lab/Part-A/Step2-create3nodecluster.sh
 fi
 
 # 2. Pre-load images
