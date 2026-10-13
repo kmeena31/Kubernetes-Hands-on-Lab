@@ -14,4 +14,4 @@ kubectl get pod nginx-pod  -o wide
 echo "=======  get pod status in yaml format ======="
 kubectl describe pod nginx-pod |grep -E '^Name|Namespace|Node|Status|IP):|Image:|Restart Count'
 echo " =======  get pod events ======="
-kubectl describe pod nginx-pod |sed -n '^/Events:/,$p' 
+kubectl describe pod nginx-pod |sed -n '/^Events:/,$p' 
