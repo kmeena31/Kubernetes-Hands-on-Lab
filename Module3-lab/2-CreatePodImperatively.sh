@@ -15,3 +15,10 @@ echo "=======  get pod status in yaml format ======="
 kubectl describe pod nginx-pod |grep -E '^Name|Namespace|Node|Status|IP):|Image:|Restart Count'
 echo " =======  get pod events ======="
 kubectl describe pod nginx-pod |sed -n '/^Events:/,$p' 
+#Read the logs, then delete the Pod
+echo "=======  get pod logs ======="
+kubectl logs nginx-pod |tail -3
+echo "=======  delete pod ======="
+kubectl delete pod nginx-pod
+echo "=======  show get pod status ======="
+kubectl get pods 
