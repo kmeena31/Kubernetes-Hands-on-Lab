@@ -1,0 +1,82 @@
+#Goal: Create a small but realistic Node.js API: settings from env vars, a health endpoint, optional Redis, and graceful shutdown.
+
+name: Part C — Production-grade project
+# This triggers the action every time you push code to the main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-lab-part-c:
+    # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # Step 2: Build your first image — RUN vs CMD
+      - name: "Step 2: Lock dependencies and write the multi-stage Dockerfile"
+        run: | 
+          cd module1-lab/demo-api
+          docker run --rm -v "$(pwd)":/app -w /app node:24-alpine npm install --package-lock-only
+          ls package-lock.json
+        #Goal: Build the image, check it is healthy and check it does not run as root.
+      - name: "Step 3 : Build, run and verify"
+        run: | 
+          cd module1-lab/demo-api
+          docker build -t module1-demo-api:1.0.0 .
+          docker run -d --name demo-api -p 3000:3000 \
+            -e GREETING="Hello from my production image!" \
+            module1-demo-api:1.0.0
+          # FIXED: Give the Node.js process 3 seconds to spin up and bind to port 3000
+          sleep 3
+          curl -s http://localhost:3000; echo
+          curl -s http://localhost:3000/health; echo
+          # Verify container status and permissions
+          docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
+          sleep 12
+          docker ps --filter name=demo-api --format 'table {{.Names}}\t{{.Status}}'
+          docker exec demo-api whoami
+          docker images module1-demo-api
+
+            #Goal: Log in to Docker Hub, push two tags to the techitfactory namespace, delete the local copy and pull it back.
+      - name: "Step 4: Log in, Tag and push to DockerHub"
+        env:  
+            DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run:   bash module1-lab/demo-api/deploy.sh
+
+    #Goal: See the SIGTERM handler from app.js working — and what happens without one.
+      - name: "step 5: Graceful shutdown in action"
+        run: |
+             cd module1-lab/demo-api/ 
+             time docker stop demo-api
+             docker logs demo-api
+             docker inspect -f 'exit code {{.State.ExitCode}}' demo-api
+             docker rm demo-api
+
+             docker run -d --name no-handler node:24-alpine node -e 'setInterval(() => {}, 1000)'
+             time docker stop no-handler
+             docker inspect -f 'exit code {{.State.ExitCode}}' no-handler
+             docker rm no-handler
+     #Goal: Remove everything this lab created — and nothing else.
+      - name: "step 6: Clean up everything"
+        run: |
+             cd module1-lab/demo-api/ 
+             echo "=========Removing volume for web, demo-api============="
+             docker rm -fv web demo-api 2>/dev/null || true
+             echo "=========Removing volume for app-data============="
+             docker volume rm app-data 2>/dev/null  || true
+             echo "=========Removing image============="
+             docker image rm module1-demo-api:1.0.0 \
+              $DOCKERHUB_USER/module1-demo-api:1.0.0 $DOCKERHUB_USER/module1-demo-api:sha-a1b2c3d \
+              my_first_image first-image-broken env-demo 2>/dev/null || true
+
+              echo "=========logout message ============="
+              docker logout || true
+              echo "=========ps -a output============="
+              docker ps -a
+              echo "=========system df output============="
+              docker system df
+

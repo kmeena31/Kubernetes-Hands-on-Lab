@@ -1,0 +1,80 @@
+name: PartB -  Build and configure your own images
+# This triggers the action every time you push code to the main branch
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  run-lab-part-b:
+    # "ubuntu-latest" is the GitHub-hosted runner that comes with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download your repository code onto the runner
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # Step 2: Build your first image — RUN vs CMD
+      - name: "Step 2: Build first image"
+        run: |
+          cd module1-lab/first-image
+          echo "=== Displaying content of Dockerfile.broken====="
+          cat Dockerfile.broken
+          echo "=====Building image====="
+          docker build --progress=plain --no-cache -f Dockerfile.broken -t first-image-broken .
+          docker run --rm first-image-broken
+          docker inspect -f 'CMD it inherited: {{json .Config.Cmd}}' first-image-broken
+          echo "============list docker images==============="
+          docker images
+
+      - name: "Step 3: Corrected first image file"
+        run: |
+          cd module1-lab/first-image
+          echo "=== Displaying content of Dockerfile ====="
+          cat Dockerfile
+          echo "====== building first image with correct file name - Dockerfile ====="
+          docker build -t my_first_image .
+          echo "====== Listing my first image ========"
+          docker images my_first_image
+          echo "====== Run the first image =========="
+          docker run --rm my_first_image
+
+      - name: "step 4: Environment variables — same image, different settings"
+        run: |
+            cd module1-lab/env-demo
+            echo "=== Displaying content of Dockerfile ====="
+            cat Dockerfile
+            cat app.env
+            docker build -t env-demo .
+
+            echo '--- 1. default from ENV ---'
+            docker run --rm env-demo
+
+            echo '--- 2. override with -e ---'
+            docker run --rm -e GREETING="Hello from -e" env-demo
+
+            echo '--- 3. load a file with --env-file ---'
+            docker run --rm --env-file app.env env-demo
+
+            echo '--- 4. both: -e wins ---'
+            docker run --rm --env-file app.env -e APP_ENV=prod env-demo
+
+
+        #Goal: See data disappear without a volume, then keep it with a named volume.
+      - name: "step 5: Keep your data: volumes "
+        continue-on-error: true
+        run: | 
+              echo " Without a volume, data dies with the container"
+              cd module1-lab/
+              docker run --name temp-writer alpine:3.22 sh -c 'echo "important data" > /data.txt'
+              docker rm temp-writer
+              docker run --rm alpine:3.22 cat /data.txt
+      - name: "step 5.1: Named volume — survives container removal "
+        continue-on-error: true
+        run: |        
+              echo "Named volume — survives container removal"
+              docker volume create app-data
+                for i in 1 2 3; do
+                    docker run --rm -v app-data:/data alpine:3.22 sh -c "echo 'run $i wrote this' >> /data/log.txt"
+                done
+              docker run --rm -v app-data:/data alpine:3.22 cat /data/log.txt

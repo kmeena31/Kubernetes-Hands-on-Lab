@@ -1,0 +1,13 @@
+{
+  "name": "module1-demo-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "redis": "^6.2.1"
+  }
+}
