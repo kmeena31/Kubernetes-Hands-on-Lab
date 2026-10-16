@@ -14,7 +14,7 @@ echo "Waiting for the new pod to be ready..."
 kubectl wait --for=condition=Ready pod/nginx-pod --timeout=60s
 kubectl get pod nginx-pod -o jsonpath='new Ip: {.status.podIP}{"\n"}'
 kubectl get endpointslices -l kubernetes.io/service-name=nginx-svc
-kubectl exec client --wget -qO- http://nginx-svc |grep title
+kubectl exec client -- wget -qO- http://nginx-svc |grep title
 
 
 
