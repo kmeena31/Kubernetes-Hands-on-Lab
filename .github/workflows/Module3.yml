@@ -29,8 +29,6 @@ jobs:
           ./Module3-lab/3-Generate-Yaml.sh
       - name: Talk to pod by its IP
         run: |
-          chmod +x ./Module3-lab/4-TalktoaPodbyitsIP.sh
-          echo "Running 4-TalktoaPodbyitsIP.sh script to talk to pod by its IP..."
-          ./Module3-lab/4-TalktoaPodbyitsIP.sh
-
-        
+          chmod +x ./Module3-lab/5-watchthelifecycle.sh
+          echo "Running 5-watchthelifecycle.sh script to watch the lifecycle..."
+          ./Module3-lab/5-watchthelifecycle.sh
