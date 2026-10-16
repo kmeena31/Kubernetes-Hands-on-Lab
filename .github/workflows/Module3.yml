@@ -79,16 +79,18 @@ jobs:
           echo "Running 11-ServiceSurvivesPodReplacement.sh script..."
           ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
 
-      # - name: Step12 - Reach it from outside - NodePort and port-forward
-      #   run: |
-      #     chmod +x ./Module3-lab/12-NodePortandPortForward.sh
-      #     echo "Running 12-NodePortandPortForward.sh script..."
-      #     ./Module3-lab/12-NodePortandPortForward.sh
-      # - name: Step13 -Two containers, one Pod
-      #   run: |
-      #     chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
-      #     echo "Running 13-TwoContainersOnePod.sh script..."
-      #     ./Module3-lab/13-TwoContainersOnePod.sh
+      - name: Step12 - Reach it from outside - NodePort and port-forward
+        run: |
+          chmod +x ./Module3-lab/12-NodePortandPortForward.sh
+          echo "Running 12-NodePortandPortForward.sh script..."
+          ./Module3-lab/12-NodePortandPortForward.sh
+
+      - name: Step13 -Two containers, one Pod
+        run: |
+          chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
+          echo "Running 13-TwoContainersOnePod.sh script..."
+          ./Module3-lab/13-TwoContainersOnePod.sh
+          
       # - name: Step14 - 2026 features native sidecar and in-place resize
       #   run: |
       #     chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
