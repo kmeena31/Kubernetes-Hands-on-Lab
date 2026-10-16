@@ -5,7 +5,7 @@ set -e
 #Goal:Let kubectl write a draft manifest, compare it with the clean pod.yaml, and create the Pod declaratively.
 
 #1. Draft a manifest — nothing is created
-cd Module2-lab/
+cd Module3-lab/
 kubectl run nginx-pod --image=nginx:1.28-alpine --port=80 -l app=nginx \
 --dry-run=client -o yaml 
 
