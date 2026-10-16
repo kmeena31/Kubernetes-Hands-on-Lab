@@ -10,8 +10,9 @@ kubectl label pod nginx-pod app=web --overwrite
 sleep 2
 kubectl get endpointslices -l kubernetes.io/service-name=nginx-svc
 kubectl  exec client -- wget -qO- http://nginx-svc 
+echo "put the label back"
 kubectl label pod nginx-pod app=nginx --overwrite
-# sleep 2
+sleep 2
 echo "After fixing the label, the endpoint should reappear:"
 kubectl get endpointslices -l kubernetes.io/service-name=nginx-svc
 kubectl  exec client -- wget -qO- http://nginx-svc |grep title
