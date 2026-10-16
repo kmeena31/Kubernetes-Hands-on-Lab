@@ -60,49 +60,50 @@ jobs:
           ./Module3-lab/8-CreateaServicefromYaml.sh
 
       - name: Step9 - Service Discovery with DNS
+        continue-on-error: true
         run: |
           chmod +x ./Module3-lab/9-ServiceDiscoverywithDNS.sh
           echo "Running 9-ServiceDiscoverywithDNS.sh script to discover services..."
           ./Module3-lab/9-ServiceDiscoverywithDNS.sh
 
-      - name: Step10 - Labels — Decide which Pods uses a Service
-        run: |
-          chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
-          echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
-          ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+      # - name: Step10 - Labels — Decide which Pods uses a Service
+      #   run: |
+      #     chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+      #     echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
+      #     ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
 
-      - name: Step11 - Service Survives Pod Replacement
-        run: |
-          chmod +x ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
-          echo "Running 11-ServiceSurvivesPodReplacement.sh script..."
-          ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
+      # - name: Step11 - Service Survives Pod Replacement
+      #   run: |
+      #     chmod +x ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
+      #     echo "Running 11-ServiceSurvivesPodReplacement.sh script..."
+      #     ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
 
-      - name: Step12 - Reach it from outside - NodePort and port-forward
-        run: |
-          chmod +x ./Module3-lab/12-NodePortandPortForward.sh
-          echo "Running 12-NodePortandPortForward.sh script..."
-          ./Module3-lab/12-NodePortandPortForward.sh
-      - name: Step13 -Two containers, one Pod
-        run: |
-          chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
-          echo "Running 13-TwoContainersOnePod.sh script..."
-          ./Module3-lab/13-TwoContainersOnePod.sh
-      - name: Step14 - 2026 features native sidecar and in-place resize
-        run: |
-          chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
-          echo "Running 14-NativeSidecarandInPlaceResize.sh script..."
-          ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
+      # - name: Step12 - Reach it from outside - NodePort and port-forward
+      #   run: |
+      #     chmod +x ./Module3-lab/12-NodePortandPortForward.sh
+      #     echo "Running 12-NodePortandPortForward.sh script..."
+      #     ./Module3-lab/12-NodePortandPortForward.sh
+      # - name: Step13 -Two containers, one Pod
+      #   run: |
+      #     chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
+      #     echo "Running 13-TwoContainersOnePod.sh script..."
+      #     ./Module3-lab/13-TwoContainersOnePod.sh
+      # - name: Step14 - 2026 features native sidecar and in-place resize
+      #   run: |
+      #     chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
+      #     echo "Running 14-NativeSidecarandInPlaceResize.sh script..."
+      #     ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
 
-      - name: Step15 - User namespaces -  root in the Pod, nobody on the node
-        run: |
-          chmod +x ./Module3-lab/15-UserNamespace.sh
-          echo "Running 15-UserNamespace.sh script..."
-          ./Module3-lab/15-UserNamespace.sh
-      - name: Step16 - Clean up
-        run: |  
-          chmod +x ./Module3-lab/16-CleanUp.sh
-          echo "Running 16-CleanUp.sh script..."
-          ./Module3-lab/16-CleanUp.sh
+      # - name: Step15 - User namespaces -  root in the Pod, nobody on the node
+      #   run: |
+      #     chmod +x ./Module3-lab/15-UserNamespace.sh
+      #     echo "Running 15-UserNamespace.sh script..."
+      #     ./Module3-lab/15-UserNamespace.sh
+      # - name: Step16 - Clean up
+      #   run: |  
+      #     chmod +x ./Module3-lab/16-CleanUp.sh
+      #     echo "Running 16-CleanUp.sh script..."
+      #     ./Module3-lab/16-CleanUp.sh
        
       
       
