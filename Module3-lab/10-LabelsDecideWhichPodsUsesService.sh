@@ -9,8 +9,8 @@ echo "Break the selector match on purpose, watch the endpoint disappear, then fi
 kubectl label pod nginx-pod app=web --overwrite
 sleep 2
 kubectl get endpointslices -l kubernetes.io/service-name=nginx-svc
-kubectl  exec client --wget -qO- http://nginx-svc 
+kubectl  exec client -- wget -qO- http://nginx-svc 
 kubectl label pod nginx-pod app=nginx --overwrite
 sleep 2
 kubectl get endpointslices -l kubernetes.io/service-name=nginx-svc
-kubectl  exec client --wget -qO- http://nginx-svc |grep title
+kubectl  exec client -- wget -qO- http://nginx-svc |grep title
