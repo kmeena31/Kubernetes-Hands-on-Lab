@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  run-lab-all-parts:
+  Part-A:
     runs-on: ubuntu-latest
     steps:
       # Step 1: Download your repository code onto the runner
@@ -29,8 +29,8 @@ jobs:
           ./Module3-lab/3-Generate-Yaml.sh
       - name: Talk to pod by its IP
         run: |
-          chmod +x ./Module3-lab/4-TalkToPodByIP.sh
-          echo "Running 4-TalkToPodByIP.sh script to talk to pod by its IP..."
-          ./Module3-lab/4-TalkToPodByIP.sh
+          chmod +x ./Module3-lab/4-TalktoaPodbyitsIP.sh
+          echo "Running 4-TalktoaPodbyitsIP.sh script to talk to pod by its IP..."
+          ./Module3-lab/4-TalktoaPodbyitsIP.sh
 
         
