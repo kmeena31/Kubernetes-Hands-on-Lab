@@ -27,5 +27,10 @@ jobs:
           chmod +x ./Module3-lab/3-Generate-Yaml.sh
           echo "Running 3-Generate-Yaml.sh script to generate yaml..."
           ./Module3-lab/3-Generate-Yaml.sh
+      - name: Talk to pod by its IP
+        run: |
+          chmod +x ./Module3-lab/4-TalkToPodByIP.sh
+          echo "Running 4-TalkToPodByIP.sh script to talk to pod by its IP..."
+          ./Module3-lab/4-TalkToPodByIP.sh
 
         
