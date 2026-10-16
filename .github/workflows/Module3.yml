@@ -73,11 +73,11 @@ jobs:
           echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
           ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
 
-      # - name: Step11 - Service Survives Pod Replacement
-      #   run: |
-      #     chmod +x ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
-      #     echo "Running 11-ServiceSurvivesPodReplacement.sh script..."
-      #     ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
+      - name: Step11 - Service Survives Pod Replacement
+        run: |
+          chmod +x ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
+          echo "Running 11-ServiceSurvivesPodReplacement.sh script..."
+          ./Module3-lab/11-ServiceSurvivesPodReplacement.sh
 
       # - name: Step12 - Reach it from outside - NodePort and port-forward
       #   run: |
