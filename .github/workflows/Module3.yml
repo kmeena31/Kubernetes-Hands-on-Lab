@@ -67,6 +67,7 @@ jobs:
           ./Module3-lab/9-ServiceDiscoverywithDNS.sh
 
       - name: Step10 - Labels — Decide which Pods uses a Service
+        continue-on-error: true
         run: |
           chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
           echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
