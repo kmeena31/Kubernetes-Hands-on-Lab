@@ -53,4 +53,25 @@ jobs:
           chmod +x ./Module3-lab/7-CrashLoopBackOff.sh
           echo "Running 7-CrashLoopBackOff.sh script to simulate crash loop..."
           ./Module3-lab/7-CrashLoopBackOff.sh
+      - name: Step8 - Create a Service to give the pod a stable name  
+        run: |
+          chmod +x ./Module3-lab/8-CreateService.sh
+          echo "Running 8-CreateService.sh script to create a service..."
+          ./Module3-lab/8-CreateService.sh
+
+      - name: Step9 - Service Discovery with DNS
+        run: |
+          chmod +x ./Module3-lab/9-ServiceDiscoverywithDNS.sh
+          echo "Running 9-ServiceDiscoverywithDNS.sh script to discover services..."
+          ./Module3-lab/9-ServiceDiscoverywithDNS.sh
+      - name: Step10 - Labels — Decide which Pods uses a Service
+        run: |
+          chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+          echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
+          ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+
+
       
+
+      
+
