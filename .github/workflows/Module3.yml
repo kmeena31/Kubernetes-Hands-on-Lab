@@ -66,11 +66,11 @@ jobs:
           echo "Running 9-ServiceDiscoverywithDNS.sh script to discover services..."
           ./Module3-lab/9-ServiceDiscoverywithDNS.sh
 
-      # - name: Step10 - Labels — Decide which Pods uses a Service
-      #   run: |
-      #     chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
-      #     echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
-      #     ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+      - name: Step10 - Labels — Decide which Pods uses a Service
+        run: |
+          chmod +x ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
+          echo "Running 10-LabelsDecideWhichPodsUsesService.sh script..."
+          ./Module3-lab/10-LabelsDecideWhichPodsUsesService.sh
 
       # - name: Step11 - Service Survives Pod Replacement
       #   run: |
