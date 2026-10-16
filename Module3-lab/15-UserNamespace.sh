@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e 
+
+#step15: User namespaces: root in the Pod, nobody on the node
+#Goal: Run the same command as root in two Pods — one with its own user namespace — and see which UID each really has on the node.
+
+cd Module3-lab/
+echo "Run the same command as root in two Pods — one with its own user namespace — and see which UID each really has on the node."
+kubectl apply -f userns-pod.yaml
+kubectl run normal-pod --image=busybox:1.37 --command -- sleep 3701
+kubectl exec userns-pod -- id
+kubectl exec userns-pod -- cat /proc/self/uid_map
+kubectl exec normal-pod -- cat /proc/self/uid_map
+
+
+echo " On the node (kind nodes are containers, so we can look)"
+
+for p in userns-pod:3700 normal-pod:3701; do
+  pod=${p%:*}; secs=${p#*:}
+  node=$(kubectl get pod $pod -o jsonpath='{.spec.nodeName}')
+  echo "$pod on $node runs as host UID $(docker exec $node sh -c "stat -c %u /proc/\$(pgrep -f '^sleep $secs')")"
+done

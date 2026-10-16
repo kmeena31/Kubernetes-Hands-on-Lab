@@ -1,0 +1,31 @@
+cat > two-containers.yaml <<'EOF'
+apiVersion: v1
+kind: Pod
+metadata:
+  name: two-containers
+  labels:
+    app: shared-demo
+spec:
+  volumes:
+    - name: shared-html
+      emptyDir: {}
+  containers:
+    - name: web
+      image: nginx:1.28-alpine
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: shared-html
+          mountPath: /usr/share/nginx/html
+    - name: writer
+      image: busybox:1.37
+      command: ["sh", "-c"]
+      args:
+        - while true; do
+            echo "<h1>Written by the writer container at $(date +%T)</h1>" > /html/index.html;
+            sleep 5;
+          done
+      volumeMounts:
+        - name: shared-html
+          mountPath: /html
+EOF
