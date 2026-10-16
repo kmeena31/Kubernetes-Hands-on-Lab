@@ -22,5 +22,10 @@ jobs:
           chmod +x ./Module3-lab/2-CreatePodImperatively.sh
           echo "Running 2-CreatePodImperatively.sh script to create a pod imperatively..."
           ./Module3-lab/2-CreatePodImperatively.sh
+      - name: Generate yaml, then apply it 
+        run: |
+          chmod +x ./Module3-lab/3-Generate-Yaml.sh
+          echo "Running 3-Generate-Yaml.sh script to generate yaml..."
+          ./Module3-lab/3-Generate-Yaml.sh
 
         
