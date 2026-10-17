@@ -87,15 +87,15 @@ jobs:
 
       - name: Step13 -Two containers, one Pod
         run: |
-          chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
-          echo "Running 13-TwoContainersOnePod.sh script..."
-          ./Module3-lab/13-TwoContainersOnePod.sh
+          chmod +x ./Module3-lab/13-TwoContainers-OnePod.sh
+          echo "Running 13-TwoContainers-OnePod.sh script..."
+          ./Module3-lab/13-TwoContainers-OnePod.sh
 
       - name: Step14 - 2026 features native sidecar and in-place resize
         run: |
-          chmod +x ./Module3-lab/14-NativeSidecar_andInPlaceResize.sh
-          echo "Running 14-NativeSidecar_andInPlaceResize.sh script..."
-          ./Module3-lab/14-NativeSidecar_andInPlaceResize.sh
+          chmod +x ./Module3-lab/14-NativeSidecar-Inplaceresize.sh          
+          echo "Running 14-NativeSidecar-Inplaceresize.sh  script..."
+          ./Module3-lab/14-NativeSidecar-Inplaceresize.sh
 
       - name: Step15 - User namespaces -  root in the Pod, nobody on the node
         run: |
