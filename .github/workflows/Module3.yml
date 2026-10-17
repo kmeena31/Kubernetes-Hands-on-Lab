@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Part-A:
+  Run-All-Parts:
     runs-on: ubuntu-latest
     steps:
       # Step 1: Download your repository code onto the runner
@@ -81,9 +81,9 @@ jobs:
 
       - name: Step12 - Reach it from outside - NodePort and port-forward
         run: |
-          chmod +x ./Module3-lab/12-NodePortandPortForward.sh
-          echo "Running 12-NodePortandPortForward.sh script..."
-          ./Module3-lab/12-NodePortandPortForward.sh
+          chmod +x ./Module3-lab/12-NodePort_PortForward.sh
+          echo "Running 12-NodePort_PortForward.sh script..."
+          ./Module3-lab/12-NodePort_PortForward.sh
 
       - name: Step13 -Two containers, one Pod
         run: |
@@ -93,9 +93,9 @@ jobs:
 
       - name: Step14 - 2026 features native sidecar and in-place resize
         run: |
-          chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
-          echo "Running 14-NativeSidecarandInPlaceResize.sh script..."
-          ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
+          chmod +x ./Module3-lab/14-NativeSidecar_andInPlaceResize.sh
+          echo "Running 14-NativeSidecar_andInPlaceResize.sh script..."
+          ./Module3-lab/14-NativeSidecar_andInPlaceResize.sh
 
       - name: Step15 - User namespaces -  root in the Pod, nobody on the node
         run: |
