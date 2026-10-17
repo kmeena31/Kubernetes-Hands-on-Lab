@@ -19,6 +19,6 @@ echo "From your laptop: port-forward"
 kubectl port-forward service/nginx-svc  8080:80 > /dev/null &
 PF_PID=$!
 sleep 3
-curl -s  "http://localhost:8080 |grep title
+curl -s  "http://localhost:8080 | grep title
 kill $PF_PID
 

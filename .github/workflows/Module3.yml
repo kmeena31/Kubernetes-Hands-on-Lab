@@ -90,18 +90,18 @@ jobs:
           chmod +x ./Module3-lab/13-TwoContainersOnePod.sh
           echo "Running 13-TwoContainersOnePod.sh script..."
           ./Module3-lab/13-TwoContainersOnePod.sh
-          
-      # - name: Step14 - 2026 features native sidecar and in-place resize
-      #   run: |
-      #     chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
-      #     echo "Running 14-NativeSidecarandInPlaceResize.sh script..."
-      #     ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
 
-      # - name: Step15 - User namespaces -  root in the Pod, nobody on the node
-      #   run: |
-      #     chmod +x ./Module3-lab/15-UserNamespace.sh
-      #     echo "Running 15-UserNamespace.sh script..."
-      #     ./Module3-lab/15-UserNamespace.sh
+      - name: Step14 - 2026 features native sidecar and in-place resize
+        run: |
+          chmod +x ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
+          echo "Running 14-NativeSidecarandInPlaceResize.sh script..."
+          ./Module3-lab/14-NativeSidecarandInPlaceResize.sh
+
+      - name: Step15 - User namespaces -  root in the Pod, nobody on the node
+        run: |
+          chmod +x ./Module3-lab/15-UserNamespace.sh
+          echo "Running 15-UserNamespace.sh script..."
+          ./Module3-lab/15-UserNamespace.sh
       # - name: Step16 - Clean up
       #   run: |  
       #     chmod +x ./Module3-lab/16-CleanUp.sh
