@@ -8,7 +8,7 @@ set -e
 cd Module3-lab/
 echo "Run a native sidecar that ships nginx's logs, then change the Pod's CPU without restarting it."
 kubectl apply -f sidecar-resize.yaml
-kubectl wait --for=condition=Ready pod/modern-pod  --timeout=60
+kubectl wait --for=condition=Ready pod/modern-pod  --timeout=60s
 kubectl get pod modern-pod
 kubectl exec modern-pod -c web -- wget -qO- http://localhost > /dev/null
 sleep 2
