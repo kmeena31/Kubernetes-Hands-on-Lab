@@ -20,11 +20,11 @@ EOF
 
 echo "Run the same command as root in two Pods — one with its own user namespace — and see which UID each really has on the node."
 kubectl apply -f userns-pod.yaml
-kubectl run normal-pod --image=busybox:1.37 --command -- sleep 3701
+kubectl run normal-pod --image=busybox:1.37 -- sleep 3701
+kubectl wait --for=condition=Ready pod/userns-pod pod/normal-pod --timeout=60s
 kubectl exec userns-pod -- id
 kubectl exec userns-pod -- cat /proc/self/uid_map
 kubectl exec normal-pod -- cat /proc/self/uid_map
-
 
 echo " On the node (kind nodes are containers, so we can look)"
 
