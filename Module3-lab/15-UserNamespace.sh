@@ -5,6 +5,19 @@ set -e
 #Goal: Run the same command as root in two Pods — one with its own user namespace — and see which UID each really has on the node.
 
 cd Module3-lab/
+cat > userns-pod.yaml <<'EOF'
+apiVersion: v1
+kind: Pod
+metadata:
+  name: userns-pod
+spec:
+  hostUsers: false          # give this Pod its own user namespace
+  containers:
+    - name: app
+      image: busybox:1.37
+      command: ["sleep", "3700"]
+EOF
+
 echo "Run the same command as root in two Pods — one with its own user namespace — and see which UID each really has on the node."
 kubectl apply -f userns-pod.yaml
 kubectl run normal-pod --image=busybox:1.37 --command -- sleep 3701
