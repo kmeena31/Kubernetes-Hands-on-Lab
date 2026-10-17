@@ -12,7 +12,7 @@ kubectl wait --for=condition=Ready pod/modern-pod  --timeout=60s
 kubectl get pod modern-pod
 kubectl exec modern-pod -c web -- wget -qO- http://localhost > /dev/null
 sleep 2
-kubectl logs modern-pod -c sidecar --tail=1
+kubectl logs modern-pod -c log-shipper --tail=1
 
 echo "Resizing the Pod's CPU in place without restarting it..."
 kubectl get pod modern-pod -o jsonpath='before: cpu limit={.spec.containers[0].resources.limits.cpu} restarts={.status.containerStatuses[0].restartCount}{"\n"}'
