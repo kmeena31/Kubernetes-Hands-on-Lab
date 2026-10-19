@@ -32,12 +32,12 @@ kubectl run normal-pod --image=busybox:1.37 -- sleep 3701
 
 echo "🚀 Both pods are running! Inspecting UIDs inside the containers:"
 echo "--- userns-pod ---"
-kubectl exec userns-pod -- id
-kubectl exec userns-pod -- cat /proc/self/uid_map
+kubectl exec userns-pod -c app -- id
+kubectl exec userns-pod -c app -- cat /proc/self/uid_map
 
 echo "--- normal-pod ---"
-kubectl exec normal-pod -c app -- id
-kubectl exec normal-pod -c app -- cat /proc/self/uid_map
+kubectl exec normal-pod -- id
+kubectl exec normal-pod -- cat /proc/self/uid_map
 
 echo " On the node (kind nodes are containers, so we can look)"
   # Cleaned up the nested escaping to ensure pgrep succeeds reliably on the host
